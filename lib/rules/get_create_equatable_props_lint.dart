@@ -23,7 +23,7 @@ Lint? getCreateEquatablePropsLint({
 
     if (equatableDeclaration != null) {
       return Lint(
-        code: 'add_field_to_equatable_props',
+        code: 'create_equatable_props_with_every_fields',
         message: 'Create equatable props with every fields',
         location: resolvedUnitResult.lintLocationFromOffset(
           equatableDeclaration.name2.offset,
