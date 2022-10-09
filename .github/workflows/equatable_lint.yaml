@@ -1,0 +1,27 @@
+name: Test Equatable Lint Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: dart-lang/setup-dart@v1.3
+
+      - name: Install Dependencies
+        run: dart pub get
+
+      - name: Format
+        run: dart format --set-exit-if-changed lib bin
+
+      - name: Analyze
+        run: dart analyze lib bin

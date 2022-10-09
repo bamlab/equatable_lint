@@ -1,0 +1,17 @@
+name: equatable_lint_example
+description: Package with every examples for the equatable_lint package
+version: 0.1.0
+
+publish_to: none
+
+environment:
+  sdk: '>=2.18.1 <3.0.0'
+
+dependencies:
+  analyzer: ^4.7.0
+  equatable: ^2.0.5
+
+dev_dependencies:
+  custom_lint: ^0.0.12
+  equatable_lint:
+    path: ../
