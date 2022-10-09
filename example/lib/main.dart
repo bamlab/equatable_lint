@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 class ExampleA extends Equatable {
   const ExampleA({this.exampleA});
 
+  // A lint will appear here because exampleA is not in not in props
   final String? exampleA;
 
   @override
@@ -13,6 +14,7 @@ class ExampleA extends Equatable {
 class ExtendExampleA1 extends ExampleA {
   const ExtendExampleA1({this.extendExampleA});
 
+  // A lint will appear here because extendExampleA is not in not in props
   final String? extendExampleA;
 
   @override
@@ -22,11 +24,15 @@ class ExtendExampleA1 extends ExampleA {
 class ExtendExampleA2 extends ExampleA {
   const ExtendExampleA2({this.extendExampleA});
 
+  // A lint will appear here because extendExampleA is not in not in props
   final String? extendExampleA;
 
+  // No lint appear here because this is a getter
   bool get test => false;
 
   @override
+  // A lint will appear here because props doesn't call super.props
+  // So it doesn't count fields defined in ExampleA class
   List<Object?> get props => [];
 }
 
@@ -37,6 +43,7 @@ class ExtendExampleA3 extends ExampleA {
 class ExampleB extends Equatable {
   ExampleB({this.exampleB});
 
+  // A lint will appear here because exampleB is not in not in props
   final String? exampleB;
 
   @override
@@ -46,6 +53,7 @@ class ExampleB extends Equatable {
 class ExtendExampleB extends ExampleB {
   ExtendExampleB({this.extendExampleB});
 
+  // A lint will appear here because extendExampleB is not in not in props
   final String? extendExampleB;
 
   @override
@@ -56,6 +64,7 @@ abstract class ExampleC extends Equatable {
   const ExampleC();
 }
 
+// A lint will appear here because ExtendExampleC does not override props field
 class ExtendExampleC extends ExampleC {
   const ExtendExampleC({this.extendExampleC});
 
@@ -71,6 +80,7 @@ abstract class ExampleD extends Equatable {
   List<Object?> get props => [exampleD];
 }
 
+// A lint will appear here because ExtendExampleD does not override props field
 class ExtendExampleD extends ExampleD {
   const ExtendExampleD({this.extendExampleD});
 
