@@ -24,6 +24,8 @@ class ExtendExampleA2 extends ExampleA {
 
   final String? extendExampleA;
 
+  bool get test => false;
+
   @override
   List<Object?> get props => [];
 }
@@ -58,4 +60,21 @@ class ExtendExampleC extends ExampleC {
   const ExtendExampleC({this.extendExampleC});
 
   final String? extendExampleC;
+}
+
+abstract class ExampleD extends Equatable {
+  const ExampleD({this.exampleD});
+
+  final String? exampleD;
+
+  @override
+  List<Object?> get props => [exampleD];
+}
+
+class ExtendExampleD extends ExampleD {
+  const ExtendExampleD({this.extendExampleD});
+
+  final String? extendExampleD;
+
+  bool get test => false;
 }

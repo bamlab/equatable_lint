@@ -41,6 +41,9 @@ class EquatableLint extends PluginBase {
           .where(
             (fieldElement) => fieldElement.name != equatablePropsName,
           )
+          .where(
+            (fieldElement) => !fieldElement.isSynthetic,
+          ) // Remove getter/Setter
           .toList();
 
       if (equatablePropsExpressionDetails == null) {
