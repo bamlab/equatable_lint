@@ -81,10 +81,13 @@ abstract class ExampleD extends Equatable {
 }
 
 // A lint will appear here because ExtendExampleD does not override props field
+// It will ony add extendExampleD to props since testGetter is a getter and testStatic is static
 class ExtendExampleD extends ExampleD {
   const ExtendExampleD({this.extendExampleD});
 
   final String? extendExampleD;
 
-  bool get test => false;
+  bool get testGetter => false;
+
+  static const testStatic = false;
 }
