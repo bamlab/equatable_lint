@@ -1,34 +1,34 @@
 // ignore_for_file: avoid_field_initializers_in_const_classes, overridden_fields
 import 'package:equatable/equatable.dart';
 
-class ExampleA extends Equatable {
-  const ExampleA({this.exampleA});
+class FieldNotInPropsExample extends Equatable {
+  const FieldNotInPropsExample({this.field, this.field2});
 
-  // A lint will appear here because exampleA is not in not in props
-  final String? exampleA;
+  // A lint will appear here because field is not in not in props
+  final String? field;
+
+  // A lint will also appear here because field2 is not in not in props
+  final String? field2;
 
   @override
   List<Object?> get props => [];
 }
 
-class ExtendExampleA1 extends ExampleA {
-  const ExtendExampleA1({this.extendExampleA});
+class NewFieldNotInPropsExample extends FieldNotInPropsExample {
+  const NewFieldNotInPropsExample({this.newField});
 
   // A lint will appear here because extendExampleA is not in not in props
-  final String? extendExampleA;
+  final String? newField;
 
   @override
   List<Object?> get props => super.props..addAll([]);
 }
 
-class ExtendExampleA2 extends ExampleA {
-  const ExtendExampleA2({this.extendExampleA});
+class NotCallingSuperForPropsExample extends FieldNotInPropsExample {
+  const NotCallingSuperForPropsExample({this.newField});
 
-  // A lint will appear here because extendExampleA is not in not in props
-  final String? extendExampleA;
-
-  // No lint appear here because this is a getter
-  bool get test => false;
+  // A lint will appear here because newField is not in not in props
+  final String? newField;
 
   @override
   // A lint will appear here because props doesn't call super.props
@@ -36,58 +36,111 @@ class ExtendExampleA2 extends ExampleA {
   List<Object?> get props => [];
 }
 
-class ExtendExampleA3 extends ExampleA {
-  const ExtendExampleA3();
+class NoFieldToAddToPropsExample extends FieldNotInPropsExample {
+  const NoFieldToAddToPropsExample();
 }
 
-class ExampleB extends Equatable {
-  ExampleB({this.exampleB});
+class PropsVariableExample extends Equatable {
+  PropsVariableExample({this.field});
 
-  // A lint will appear here because exampleB is not in not in props
-  final String? exampleB;
+  // A lint will appear here because field is not in not in props
+  final String? field;
 
   @override
   late final List<Object?> props = [];
 }
 
-class ExtendExampleB extends ExampleB {
-  ExtendExampleB({this.extendExampleB});
+class AddOnlyNewFieldToSuperPropsVariableExample extends PropsVariableExample {
+  AddOnlyNewFieldToSuperPropsVariableExample({this.newField});
 
-  // A lint will appear here because extendExampleB is not in not in props
-  final String? extendExampleB;
+  // A lint will appear here because newField is not in not in props
+  final String? newField;
 
   @override
   late final List<Object?> props = super.props..addAll([]);
 }
 
-abstract class ExampleC extends Equatable {
-  const ExampleC();
+abstract class AbstractClassWithNoFields extends Equatable {
+  const AbstractClassWithNoFields();
 }
 
-// A lint will appear here because ExtendExampleC does not override props field
-class ExtendExampleC extends ExampleC {
-  const ExtendExampleC({this.extendExampleC});
+// A lint will appear here because NoPropsOverrideExample does not override props field
+class NoPropsOverrideExample extends AbstractClassWithNoFields {
+  const NoPropsOverrideExample({this.field});
 
-  final String? extendExampleC;
+  final String? field;
 }
 
-abstract class ExampleD extends Equatable {
-  const ExampleD({this.exampleD});
+abstract class AbstractClassWithAllFieldsInProps extends Equatable {
+  const AbstractClassWithAllFieldsInProps({this.abstractField});
 
-  final String? exampleD;
+  final String? abstractField;
 
   @override
-  List<Object?> get props => [exampleD];
+  List<Object?> get props => [abstractField];
 }
 
-// A lint will appear here because ExtendExampleD does not override props field
+// A lint will appear here because AddOnlyNewPropToSuperPropsExample does not override props field
 // It will ony add extendExampleD to props since testGetter is a getter and testStatic is static
-class ExtendExampleD extends ExampleD {
-  const ExtendExampleD({this.extendExampleD});
+class AddOnlyNewPropToSuperPropsExample
+    extends AbstractClassWithAllFieldsInProps {
+  const AddOnlyNewPropToSuperPropsExample({this.newField});
 
-  final String? extendExampleD;
+  final String? newField;
 
   bool get testGetter => false;
 
   static const testStatic = false;
+}
+
+class NoLintOnGetterExample extends Equatable {
+  const NoLintOnGetterExample();
+
+  bool get testGetter => false;
+
+  @override
+  List<Object?> get props => [];
+}
+
+class NoLintOnStaticVariableExample extends Equatable {
+  const NoLintOnStaticVariableExample();
+
+  static const testStatic = false;
+
+  @override
+  List<Object?> get props => [];
+}
+
+class IgnoreOnePropExample extends Equatable {
+  const IgnoreOnePropExample({this.ignoredField, this.nonIgnoredField});
+
+  // ignore: add_field_to_equatable_props
+  final String? ignoredField;
+
+  final String? nonIgnoredField;
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ReturnInPropExample extends Equatable {
+  const ReturnInPropExample({this.field});
+
+  final String? field;
+
+  @override
+  // ignore: prefer_expression_function_bodies
+  List<Object?> get props {
+    return [];
+  }
+}
+
+class AddOnlyNewFieldToSuperPropsReturnExample extends ReturnInPropExample {
+  AddOnlyNewFieldToSuperPropsReturnExample({this.newField});
+
+  // A lint will appear here because newField is not in not in props
+  final String? newField;
+
+  @override
+  late final List<Object?> props = super.props..addAll([]);
 }
