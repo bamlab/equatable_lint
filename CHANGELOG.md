@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Add fix to show multiple lints when there are multiple fields
+
 ## 0.1.3
 
 - Change package ownership
