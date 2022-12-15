@@ -10,11 +10,11 @@ import '../helpers/get_equatable_props_expression_infos.dart';
 
 /// Custom Lint rule to check if a field from an [Equatable] class
 /// is present in the "props" getter
-Lint? getAddFieldToEquatablePropsLint({
+Iterable<Lint>? getAddFieldToEquatablePropsLint({
   required ResolvedUnitResult resolvedUnitResult,
   required EquatablePropsExpressionDetails equatablePropsExpressionDetails,
   required List<FieldElement> fields,
-}) {
+}) sync* {
   for (final field in fields) {
     final isFieldInEquatableProps =
         equatablePropsExpressionDetails.fieldsNames.contains(field.name);
@@ -23,7 +23,7 @@ Lint? getAddFieldToEquatablePropsLint({
       final startLintOffset = field.nameOffset;
       final lintLength = field.nameLength;
 
-      return Lint(
+      yield Lint(
         code: 'add_field_to_equatable_props',
         message: 'Add this field to the equatable props override',
         location: resolvedUnitResult.lintLocationFromOffset(
@@ -54,5 +54,4 @@ Lint? getAddFieldToEquatablePropsLint({
       );
     }
   }
-  return null;
 }

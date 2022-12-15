@@ -68,14 +68,17 @@ class EquatableLint extends PluginBase {
           }
         }
       } else {
-        final addFieldToEquatablePropsLint = getAddFieldToEquatablePropsLint(
+        final addFieldToEquatablePropsLints = getAddFieldToEquatablePropsLint(
           resolvedUnitResult: resolvedUnitResult,
           equatablePropsExpressionDetails: equatablePropsExpressionDetails,
           fields: fields,
         );
 
-        if (addFieldToEquatablePropsLint != null) {
-          yield addFieldToEquatablePropsLint;
+        if (addFieldToEquatablePropsLints != null) {
+          for (final addFieldToEquatablePropsLint
+              in addFieldToEquatablePropsLints) {
+            yield addFieldToEquatablePropsLint;
+          }
         }
 
         final equatableClassSuperType = equatableElement.supertype;
