@@ -26,8 +26,8 @@ Lint? getCreateEquatablePropsLint({
         code: 'create_equatable_props_with_every_fields',
         message: 'Create equatable props with every fields',
         location: resolvedUnitResult.lintLocationFromOffset(
-          equatableDeclaration.name2.offset,
-          length: equatableDeclaration.name2.length,
+          equatableDeclaration.name.offset,
+          length: equatableDeclaration.name.length,
         ),
         getAnalysisErrorFixes: (lint) => getCustomAnalysisErrorFixes(
           lint: lint,

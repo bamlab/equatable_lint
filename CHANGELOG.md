@@ -1,3 +1,7 @@
+## 0.1.5
+
+- Upgrade dependencies
+
 ## 0.1.4
 
 - Add fix to show multiple lints when there are multiple fields

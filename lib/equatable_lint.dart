@@ -1,20 +1,19 @@
-import 'dart:isolate';
-
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'package:equatable/equatable.dart';
-import 'package:equatable_lint/const.dart';
-import 'package:equatable_lint/helpers/get_equatable_props_expression_infos.dart';
-import 'package:equatable_lint/helpers/get_has_override_equatable_props_in_super_class.dart';
-import 'package:equatable_lint/rules/get_add_field_to_equatable_props_lint.dart';
-import 'package:equatable_lint/rules/get_create_equatable_props_lint.dart';
-import 'package:equatable_lint/rules/get_props_need_to_call_super_lint.dart';
 import 'package:source_gen/source_gen.dart';
 
-void main(List<String> args, SendPort sendPort) {
-  startPlugin(sendPort, EquatableLint());
-}
+import 'const.dart';
+import 'helpers/get_equatable_props_expression_infos.dart';
+import 'helpers/get_has_override_equatable_props_in_super_class.dart';
+import 'rules/get_add_field_to_equatable_props_lint.dart';
+import 'rules/get_create_equatable_props_lint.dart';
+import 'rules/get_props_need_to_call_super_lint.dart';
 
+/// Entry point for the Equatable lint plugin
+EquatableLint createPlugin() => EquatableLint();
+
+/// Equatable lint plugin base class
 class EquatableLint extends PluginBase {
   @override
   Stream<Lint> getLints(ResolvedUnitResult resolvedUnitResult) async* {
@@ -52,7 +51,7 @@ class EquatableLint extends PluginBase {
         if (equatableClassSuperType != null) {
           final hasOverrideEquatablePropsInSuperClass =
               getHasOverrideEquatablePropsInSuperClass(
-            equatableClassSuperType.element2,
+            equatableClassSuperType.element,
           );
 
           final createEquatablePropsLint = getCreateEquatablePropsLint(
@@ -85,7 +84,7 @@ class EquatableLint extends PluginBase {
         if (equatableClassSuperType != null) {
           final hasOverrideEquatablePropsInSuperClass =
               getHasOverrideEquatablePropsInSuperClass(
-            equatableClassSuperType.element2,
+            equatableClassSuperType.element,
           );
 
           final propsNeedToCallSuperLint = getPropsNeedToCallSuperLint(

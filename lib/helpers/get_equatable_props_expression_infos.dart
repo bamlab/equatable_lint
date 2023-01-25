@@ -115,8 +115,8 @@ EquatablePropsExpressionDetails? getEquatablePropsExpressionDetails(
       offset: equatablePropsDeclaration.body.offset,
       length: equatablePropsDeclaration.body.length,
       fieldsNames: _getFieldsNamesFromPropsExpression(equatablePropsExpression),
-      nameOffset: equatablePropsDeclaration.name2.offset,
-      nameLength: equatablePropsDeclaration.name2.length,
+      nameOffset: equatablePropsDeclaration.name.offset,
+      nameLength: equatablePropsDeclaration.name.length,
     );
   }
 
@@ -149,8 +149,8 @@ EquatablePropsExpressionDetails? getEquatablePropsExpressionDetails(
       offset: equatableGetterDeclaration.offset,
       length: equatableGetterDeclaration.length,
       fieldsNames: _getFieldsNamesFromPropsExpression(equatablePropsExpression),
-      nameOffset: equatableGetterDeclaration.name2.offset,
-      nameLength: equatableGetterDeclaration.name2.length,
+      nameOffset: equatableGetterDeclaration.name.offset,
+      nameLength: equatableGetterDeclaration.name.length,
     );
   }
 
