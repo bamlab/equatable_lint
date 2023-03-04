@@ -1,5 +1,5 @@
 name: equatable_lint
-version: 0.1.5
+version: 1.0.0
 description: This is a set of rules to make classes using Equatable more maintainable. We make sure here that every fields in an Equatable class is linked to the Equatable props getter.
 homepage: https://github.com/bamlab/equatable_lint
 repository: https://github.com/bamlab/equatable_lint
