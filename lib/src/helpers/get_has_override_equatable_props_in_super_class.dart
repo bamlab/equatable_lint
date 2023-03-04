@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:collection/collection.dart';
 
-import '../const.dart';
+import '../../const.dart';
 
 /// Check if the superclass has override props or not
 bool getHasOverrideEquatablePropsInSuperClass(
