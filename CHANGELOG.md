@@ -1,6 +1,10 @@
+## 0.2.0
+
+- Upgrade custom lint to 0.2.12
+
 ## 0.1.5
 
-- Upgrade dependencies
+- Upgrade custom lint to 0.1.1
 
 ## 0.1.4
 
