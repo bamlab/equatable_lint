@@ -14,8 +14,8 @@ class NeedToCallSuperWhenOverridingPropsExample extends BaseEquatableClass {
 
   final String? newField;
 
-  @override
   // A lint will appear here because props doesn't call super.props
   // So it doesn't count fields defined in NewFieldNotInPropsExample class
+  @override
   List<Object?> get props => [newField];
 }

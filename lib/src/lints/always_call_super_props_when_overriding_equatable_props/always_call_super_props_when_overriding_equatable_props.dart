@@ -1,8 +1,8 @@
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-import '../../helpers/get_equatable_props_expression_infos.dart';
-import '../../helpers/get_has_override_equatable_props_in_super_class.dart';
+import 'fixes/call_super_in_overrided_equatable_props.dart';
+import 'helpers/add_equatable_super_class_declaration_listener.dart';
 
 /// Lint to make props override call super.props if needed
 class AlwaysCallSuperPropsWhenOverridingEquatableProps extends DartLintRule {
@@ -12,7 +12,7 @@ class AlwaysCallSuperPropsWhenOverridingEquatableProps extends DartLintRule {
   static const _code = LintCode(
     name: 'always_call_super_props_when_overriding_equatable_props',
     problemMessage:
-        'Dont forget to call super.props when overriding equtable props',
+        'Dont forget to call super.props when overriding equatable props',
   );
 
   @override
@@ -21,38 +21,17 @@ class AlwaysCallSuperPropsWhenOverridingEquatableProps extends DartLintRule {
     ErrorReporter reporter,
     CustomLintContext context,
   ) {
-    context.registry.addClassDeclaration((classNode) {
-      final classSuperTypeElement =
-          classNode.declaredElement!.supertype?.element;
-
-      if (classSuperTypeElement == null) {
-        return;
-      }
-
-      final hasOverrideEquatablePropsInSuperClass =
-          getHasOverrideEquatablePropsInSuperClass(classSuperTypeElement);
-
-      if (!hasOverrideEquatablePropsInSuperClass) {
-        return;
-      }
-
-      final equatablePropsClassMember = classNode.equatablePropsClassMember;
-
-      if (equatablePropsClassMember == null) {
-        return;
-      }
-
-      final doesPropsCallSuper =
-          equatablePropsClassMember.toString().contains('super.props');
-
-      if (doesPropsCallSuper) {
-        return;
-      }
-
+    context.registry.addEquatableSuperClassDeclaration(({
+      required classNode,
+      required equatablePropsClassMember,
+      required equatablePropsExpressionDetails,
+    }) {
       reporter.reportErrorForNode(_code, equatablePropsClassMember);
     });
   }
 
   @override
-  List<Fix> getFixes() => [];
+  List<Fix> getFixes() => [
+        CallSuperInOverridedEquatableProps(),
+      ];
 }
