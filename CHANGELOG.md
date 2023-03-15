@@ -1,3 +1,8 @@
+## 0.2.1
+
+- Add "add every missing fields" dart fix for "missing_field_in_equatable_props" lint
+- Add "call super in overrided equatable props" dart fix for "always_call_super_props_when_overriding_equatable_props" lint
+
 ## 0.2.0
 
 - Upgrade custom lint to 0.2.12

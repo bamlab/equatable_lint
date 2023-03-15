@@ -1,6 +1,7 @@
 import 'package:analyzer/error/listener.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
+import 'fixes/add_every_fields_to_equatable_props.dart';
 import 'fixes/add_field_to_equatable_props.dart';
 import 'fixes/create_equatable_props_every_fields_in_it.dart';
 import 'fixes/create_equatable_props_with_field_in_it.dart';
@@ -45,6 +46,7 @@ class MissingFieldInEquatableProps extends DartLintRule {
   @override
   List<Fix> getFixes() => [
         AddFieldToEquatableProps(),
+        AddEveryFieldsToEquatableProps(),
         CreataEquatablePropsWithFieldInIt(),
         CreataEquatablePropsWithEveryFieldsInIt(),
       ];
