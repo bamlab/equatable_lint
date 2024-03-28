@@ -1,3 +1,10 @@
+## 0.3.0
+
+- Upgrade sdk to >=3.0.0 <4.0.0
+- Upgrade custom lint to 0.6.4
+- Upgrade custom_lint_builder to 0.6.4
+- Upgrade analyzer to 6.4.1
+
 ## 0.2.1
 
 - Add "add every missing fields" dart fix for "missing_field_in_equatable_props" lint
