@@ -1,6 +1,6 @@
 name: equatable_lint_example
 description: Package with every examples for the equatable_lint package
-version: 0.1.2
+version: 0.1.3
 
 publish_to: none
 
