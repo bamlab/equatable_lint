@@ -12,8 +12,7 @@ extension AddEquatableSuperClassDeclarationListener on LintRuleNodeRegistry {
       required ClassDeclaration classNode,
       required ClassMember equatablePropsClassMember,
       required EquatablePropsExpressionDetails equatablePropsExpressionDetails,
-    })
-        listener, {
+    }) listener, {
     bool Function(ClassDeclaration)? optionnalPreCheck,
   }) {
     addClassDeclaration((classNode) {
