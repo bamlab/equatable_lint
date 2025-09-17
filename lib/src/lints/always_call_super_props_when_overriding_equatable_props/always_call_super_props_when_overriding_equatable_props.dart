@@ -26,7 +26,7 @@ class AlwaysCallSuperPropsWhenOverridingEquatableProps extends DartLintRule {
       required equatablePropsClassMember,
       required equatablePropsExpressionDetails,
     }) {
-      reporter.atNode(equatablePropsClassMember, _code);
+      reporter.reportErrorForNode(_code, equatablePropsClassMember);
     });
   }
 

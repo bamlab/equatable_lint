@@ -36,7 +36,7 @@ class MissingFieldInEquatableProps extends DartLintRule {
           equatablePropsFieldsNames?.contains(fieldElement.displayName) ??
               false;
       if (!isFieldInEquatableProps) {
-        reporter.atNode(fieldNode, _code);
+        reporter.reportErrorForNode(_code, fieldNode);
       }
     });
   }
